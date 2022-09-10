@@ -5,12 +5,12 @@ import 'package:meals_app/screens/meal_detail_screen.dart';
 class MealItem extends StatelessWidget {
   const MealItem({
     Key key,
-    this.id,
-    this.title,
-    this.imageUrl,
-    this.affordability,
-    this.duration,
-    this.complexity,
+    @required this.id,
+    @required this.title,
+    @required this.imageUrl,
+    @required this.affordability,
+    @required this.duration,
+    @required this.complexity,
   }) : super(key: key);
 
   final String id;
@@ -53,10 +53,16 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
+    Navigator.of(context)
+        .pushNamed(
       MealDetailScreen.routeName,
       arguments: id,
-    );
+    )
+        .then((result) {
+      if (result != null) {
+        // removeItem(result);
+      }
+    });
   }
 
   @override
